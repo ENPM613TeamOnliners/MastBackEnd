@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="my.service.StreamLambdaHandlerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-11-28T03:32:40" hostname="ip-172-31-41-117" time="0.249">
+  <properties/>
+  <testcase name="ping_streamRequest_respondsWithHello" classname="my.service.StreamLambdaHandlerTest" time="0.233"/>
+  <testcase name="invalidResource_streamRequest_responds404" classname="my.service.StreamLambdaHandlerTest" time="0.004"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.8.RELEASE)
+
+]]></system-out>
+  <system-err><![CDATA[SLF4J: No SLF4J providers were found.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#noProviders for further details.
+SLF4J: Class path contains SLF4J bindings targeting slf4j-api versions prior to 1.8.
+SLF4J: Ignoring binding found at [jar:file:/home/ec2-user/.gradle/caches/modules-2/files-2.1/ch.qos.logback/logback-classic/1.2.3/7c4f3c474fb2c041d8028740440937705ebb473a/logback-classic-1.2.3.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#ignoredBindings for an explanation.
+]]></system-err>
+</testsuite>

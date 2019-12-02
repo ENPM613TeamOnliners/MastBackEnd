@@ -15,7 +15,8 @@ import lombok.Builder;
 @DynamoDBTable(tableName = "Assignment")
 public class Assignment {
     
-    private Long assignmentId;
+    private String assignmentId;
+    private String studentId;
     private String assignmentTitle;
     private String assignmentContent;
     private Double grade;
@@ -32,31 +33,38 @@ public class Assignment {
     
     
     @DynamoDBHashKey
-    public Long getAssignmentId() {
-        return userId;
-    }
-    @DynamoDBAttribute
-    public String getFirstName() {
-        return firstName;
+    public String getAssignmentId() {
+        return assignmentId;
     }
     
     @DynamoDBAttribute
-    public String getAccountName() {
-        return accountName;
+    public String getStudentId() {
+        return studentId;
     }
+    
+    
     @DynamoDBAttribute
-    public String getLastName() {
-        return lastName;
+    public String getAssignmentContent() {
+        return assignmentContent;
     }
     
     @DynamoDBAttribute
-    public String getEmail() {
-        return email;
+    public Double getGrade() {
+        return grade;
+    }
+    @DynamoDBAttribute
+    public Long getFileId() {
+        return fileId;
     }
     
     @DynamoDBAttribute
-    public String getUserType() {
-        return userType;
+    public Long getClassId() {
+        return classId;
+    }
+    
+    @DynamoDBAttribute
+    public String getAssignmentTitle() {
+        return assignmentTitle;
     }
     
     
