@@ -9,7 +9,8 @@ import java.util.List;
 
 @EnableScan
 public interface UserRepository extends CrudRepository<User, Long> {
-    User findByUserId(Long id);
+    User findByUserId(Long userId);
     
-    // List<User> findByLastName(String lastName);
+    User findByFirstNameAndLastName(String firstName, String lastName);
+    
 }

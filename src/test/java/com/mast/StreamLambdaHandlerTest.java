@@ -31,6 +31,7 @@ public class StreamLambdaHandlerTest {
     public static void setUp() {
         handler = new StreamLambdaHandler();
         lambdaContext = new MockLambdaContext();
+        // create a dummy dynamoDB
     }
 
     @Test
@@ -68,6 +69,21 @@ public class StreamLambdaHandlerTest {
         assertNotNull(response);
         assertEquals(Response.Status.NOT_FOUND.getStatusCode(), response.getStatusCode());
     }
+    
+    @Test
+    public void callUsersAPITest() {
+        InputStream requestStream = new AwsProxyRequestBuilder("/users", HttpMethod.GET)
+                                            .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
+                                            .buildStream();
+        ByteArrayOutputStream responseStream = new ByteArrayOutputStream();
+
+        handle(requestStream, responseStream);
+
+        AwsProxyResponse response = readResponse(responseStream);
+        assertNotNull(response);
+        assertEquals(Response.Status.OK.getStatusCode(), response.getStatusCode());
+    }
+
 
     private void handle(InputStream is, ByteArrayOutputStream os) {
         try {

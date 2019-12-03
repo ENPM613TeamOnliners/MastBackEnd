@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import java.util.HashMap;
 import com.mast.model.User;
 import com.mast.model.Grade;
+import com.mast.model.Module;
 import com.mast.model.ClassObject;
 import java.util.Map;
 import java.util.List;
@@ -14,6 +15,7 @@ import com.mast.data.dynamodb.repositories.UserRepository;
 import com.mast.data.dynamodb.repositories.GradeRepository;
 import com.mast.data.dynamodb.repositories.AssignmentRepository;
 import com.mast.data.dynamodb.repositories.ClassObjectRepository;
+import com.mast.data.dynamodb.repositories.ModuleRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,8 +32,12 @@ public class PingController {
     
     @Autowired
     ClassObjectRepository classRepository;
+    
     @Autowired
     GradeRepository gradeRepository;
+    
+    @Autowired
+    ModuleRepository moduleRepository;
     
     @Autowired
     AssignmentRepository assignmentRepository;
@@ -47,7 +53,7 @@ public class PingController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public User getUser(@PathVariable("userId") Long userId) {
-        User result = repository.findById(userId).orElse(null);
+        User result = repository.findByUserId(userId);
         
         return result;
     }
@@ -87,6 +93,28 @@ public class PingController {
       Grade result = gradeRepository.findByStudentIdAndAssignmentId(studentId,assignmentId);
       
       return result;
+    }
+    
+    @GetMapping(path = "/getLastModule/{classId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Module getLastModule(@PathVariable("classId") String classId) {
+      Module result = moduleRepository.findFirstFindByClassIdOrderByCreateDateDesc(classId);
+      
+      return result;
+    }
+    
+    @GetMapping(path = "/getModules/{classId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Module> getAllModules(@PathVariable("classId") String classId) {
+      List<Module> result = (List<Module>) moduleRepository.findByClassId(classId);
+      
+      return result;
+    }
+    
+    @PostMapping(path = "/addModule")
+    @ResponseStatus(HttpStatus.OK)
+    public void addModule(@RequestBody Module module) {
+       moduleRepository.save(module);
     }
     
 }
